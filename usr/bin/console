@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd $APP_DIR/app/public
+php7 console.php "$@"

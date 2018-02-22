@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd $APP_DIR/app
+php7 vendor/bin/phinx "$@" -c config/phinx.php

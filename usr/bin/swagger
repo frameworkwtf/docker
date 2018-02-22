@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd $APP_DIR
+php7 app/vendor/bin/swagger -o ./swagger.json ./app/src
