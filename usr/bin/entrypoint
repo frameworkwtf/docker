@@ -1,9 +1,6 @@
 #!/bin/sh
 
-PHINX=true
-phinx help > /dev/null || PHINX=false
-
-if [ "$PHINX" = true ] ; then
+if [ -f "$APP_DIR/app/config/phinx.php" ] ; then
     phinx migrate
     if [ "$APP_ENV" != "prod" ] ; then
         phinx seed:run
