@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ "$CRON_ENABLE" == "1" ] ; then
+    crond -b -L /proc/1/fd/1
+fi
+
+nginx
+php-fpm7 -F -R
+
+# vi: ft=sh
