@@ -1,6 +1,8 @@
 FROM alpine:latest
 
 ENV PHP_OPCACHE_ENABLE 1
+# Workaround https://bugs.php.net/bug.php?id=71880
+ENV LOG_STREAM /dev/stdout
 ENV CRON_ENABLE 0
 
 ENV APP_DIR /var/www

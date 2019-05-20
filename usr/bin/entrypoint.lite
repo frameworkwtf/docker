@@ -1,10 +1,11 @@
 #!/bin/sh
 
 if [ "$CRON_ENABLE" == "1" ] ; then
-    crond -b -L /proc/1/fd/1
+    crond -b
 fi
 
 nginx
-php-fpm7 -F -R
+php-fpm7 -DR
+tail -f $LOG_STREAM
 
 # vi: ft=sh

@@ -1,12 +1,13 @@
 #!/bin/sh
 
 if [ -f "$APP_DIR/app/vendor/bin/phinx" ] ; then
-    phinx migrate
+    phinx migrate &> $LOG_STREAM
     if [ "$APP_ENV" != "prod" ] ; then
-        phinx seed:run
+        phinx seed:run &> $LOG_STREAM
     fi
 fi
 
-crond -b -L /proc/1/fd/1
+crond -b
 nginx
-php-fpm7 -F -R
+php-fpm7 -DR
+tail -f $LOG_STREAM
