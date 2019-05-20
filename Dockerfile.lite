@@ -2,12 +2,13 @@ FROM alpine:latest
 
 ENV PHP_OPCACHE_ENABLE 1
 # Workaround https://bugs.php.net/bug.php?id=71880
-ENV LOG_STREAM /dev/stdout
+ENV LOG_STREAM /tmp/log
 ENV CRON_ENABLE 0
 
 ENV APP_DIR /var/www
 
-RUN apk --no-cache add nginx php7 php7-fpm php7-opcache
+RUN apk --no-cache add nginx php7 php7-fpm php7-opcache && \
+    mkfifo $LOG_STREAM && chmod 777 $LOG_STREAM
 
 COPY ./etc /etc
 COPY ./usr/bin/entrypoint.lite /usr/bin/entrypoint
