@@ -3,6 +3,8 @@ FROM alpine:latest
 ENV PHP_OPCACHE_ENABLE 0
 # Workaround https://bugs.php.net/bug.php?id=71880
 ENV LOG_STREAM /tmp/log
+ENV NGINX_ENABLE 1
+ENV CRON_ENABLE 1
 
 ENV APP_DIR /var/www
 ENV APP_ENV dev
@@ -21,6 +23,6 @@ RUN chmod +x /usr/bin/*
 VOLUME $APP_DIR
 WORKDIR $APP_DIR
 
-EXPOSE 8080
+EXPOSE 8080 9000
 
 CMD ["entrypoint"]

@@ -8,6 +8,8 @@ if [ -f "$APP_DIR/app/vendor/bin/phinx" ] ; then
 fi
 
 crond -b
-nginx
+if [ "$NGINX_ENABLE" == "1" ] ; then
+    nginx
+fi
 php-fpm7 -DR
 tail -f $LOG_STREAM
